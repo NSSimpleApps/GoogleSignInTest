@@ -8,6 +8,9 @@
 import SwiftUI
 import Combine
 
+/// Вьюшка для применения фильтров к изображению.
+/// Через `publisher` создаёт событие отмены.
+/// Можно сразу импортировать изменённое изображение в фотопоток и так далее.
 struct GoogleSignInFiltersView: View {
     let publisher = PassthroughSubject<Void, Never>()
     
@@ -19,9 +22,9 @@ struct GoogleSignInFiltersView: View {
     @State private var currentFilter = GoogleSignInFilter.origin
     @State private var buttonEnabled = true
     
-    init(originalImage: UIImage) {
-        self.currentImage = originalImage
-        self.originalImage = originalImage
+    init(image: UIImage) {
+        self.currentImage = image
+        self.originalImage = image
     }
     
     var body: some View {

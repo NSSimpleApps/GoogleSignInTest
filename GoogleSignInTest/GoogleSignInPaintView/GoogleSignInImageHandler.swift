@@ -7,6 +7,8 @@
 
 import UIKit
 
+/// Применяет указанный фильтр к изображению.
+/// В случае ошибки возвращает nil.
 actor GoogleSignInImageHandler {
     private let ciContext = CIContext()
     

@@ -8,6 +8,9 @@
 import SwiftUI
 import PencilKit
 
+/// Вьюшка для создания и обработки `PKCanvasView` через `UIViewRepresentable`.
+/// Создаёт обработчик `GoogleSignInCanvasHandler`.
+/// Создаёт событие обновления канваса при рисовании.
 struct GoogleSignInCanvasView: UIViewRepresentable {
     @Binding var canvasView: PKCanvasView
     @Binding var toolPicker: PKToolPicker
@@ -27,7 +30,7 @@ struct GoogleSignInCanvasView: UIViewRepresentable {
     
     func updateUIView(_ uiView: PKCanvasView, context: Context) { }
     
-    func makeCoordinator() -> GoogleSignInCoordinator {
+    func makeCoordinator() -> GoogleSignInCanvasHandler {
         return .init(onSaved: self.onSaved)
     }
     
@@ -39,8 +42,9 @@ struct GoogleSignInCanvasView: UIViewRepresentable {
     }
 }
 
-final class GoogleSignInCoordinator: NSObject, PKCanvasViewDelegate {
-    //let canvasView: Binding<PKCanvasView>
+/// Обработчик канваса через протокол `PKCanvasViewDelegate`.
+/// Создаёт событие обновления канваса при рисовании.
+final class GoogleSignInCanvasHandler: NSObject, PKCanvasViewDelegate {
     let onSaved: (PKCanvasView) -> Void
     
     init(onSaved: @escaping (PKCanvasView) -> Void) {

@@ -9,6 +9,8 @@ import CoreImage
 import CoreImage.CIFilterBuiltins
 
 
+/// Некоторые фильтры, которые используются в приложении.
+/// Возвращает заголовок фильтра и подготовляет `CIFilter`.
 enum GoogleSignInFilter: String, Hashable, Equatable, CaseIterable {
     case origin
     case sepia

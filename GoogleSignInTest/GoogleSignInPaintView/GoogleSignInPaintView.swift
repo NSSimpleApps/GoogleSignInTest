@@ -10,17 +10,15 @@ import PencilKit
 import Combine
 
 
-struct GoogleSignInImageState {
-    let originalImage: UIImage
-    let filteredImage: UIImage
-}
-
+/// Главная вьюшка для рисования.
+/// Даёт возможность импортировать изображение
+/// или вызвать окно для применения фильтров.
 struct GoogleSignInPaintView: View {
     @Environment(\.displayScale) var displayScale: CGFloat
     
     @State private var canvasView = PKCanvasView()
     @State private var toolPicker = PKToolPicker()
-    @State private var imageState: GoogleSignInImageState?
+    @State private var updatedImage: UIImage?
     
     @Environment(\.undoManager) private var undoManager
     
@@ -35,9 +33,9 @@ struct GoogleSignInPaintView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar(content: {
                 ToolbarItem(placement: .topBarTrailing) {
-                    if let filteredImage = self.imageState?.filteredImage {
-                        ShareLink(item: GoogleSignInShareImage(image: filteredImage),
-                                  preview: SharePreview(GoogleSignInShareImage.fileName, image: Image(uiImage: filteredImage)), label: {
+                    if let updatedImage = self.updatedImage {
+                        ShareLink(item: GoogleSignInShareImage(image: updatedImage),
+                                  preview: SharePreview(GoogleSignInShareImage.fileName, image: Image(uiImage: updatedImage)), label: {
                             Image(systemName: "square.and.arrow.up")
                         })
                     }
@@ -51,7 +49,7 @@ struct GoogleSignInPaintView: View {
                     })
                 }
                 ToolbarItem(placement: .topBarLeading) {
-                    if self.imageState != nil {
+                    if self.updatedImage != nil {
                         Button("Filters", action: {
                             self.toolPicker.setVisible(false, forFirstResponder: self.canvasView)
                             self.showingFiltersView = true
@@ -64,9 +62,9 @@ struct GoogleSignInPaintView: View {
                 self.toolPicker.setVisible(true, forFirstResponder: self.canvasView)
             },
                    content: {
-                if let filteredImage = self.imageState?.filteredImage {
+                if let updatedImage = self.updatedImage {
                     NavigationStack(root: {
-                        let filtersView = GoogleSignInFiltersView(originalImage: filteredImage)
+                        let filtersView = GoogleSignInFiltersView(image: updatedImage)
                         filtersView
                             .onReceive(filtersView.publisher, perform: { _ in
                                 self.showingFiltersView = false
@@ -77,15 +75,8 @@ struct GoogleSignInPaintView: View {
     }
     
     private func onSaved(canvasView: PKCanvasView) {
-        let filteredImage = canvasView.drawing.image(from: canvasView.bounds, scale: self.displayScale)
-        
-        if let imageState = self.imageState {
-            let newImageState = GoogleSignInImageState(originalImage: imageState.originalImage, filteredImage: filteredImage)
-            self.imageState = newImageState
-        } else {
-            let imageState = GoogleSignInImageState(originalImage: filteredImage, filteredImage: filteredImage)
-            self.imageState = imageState
-        }
+        let updatedImage = canvasView.drawing.image(from: canvasView.bounds, scale: self.displayScale)
+        self.updatedImage = updatedImage
     }
 }
 

@@ -9,6 +9,7 @@ import SwiftUI
 import GoogleSignIn
 import GoogleSignInSwift
 
+/// Вьюшка для входа в гугл-аккаунт.
 struct GoogleSignInAuthView: View {
     var body: some View {
         GoogleSignInButton {
@@ -21,7 +22,7 @@ struct GoogleSignInAuthView: View {
     }
 }
 
-
+/// Расширение над `UIApplication` для получения главного окна приложения.
 extension UIApplication {
     var appercodeKeyWindow: UIWindow? {
         if let sceneDelegate = self.connectedScenes.first?.delegate as? UIWindowSceneDelegate {

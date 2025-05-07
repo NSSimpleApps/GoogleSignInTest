@@ -13,6 +13,7 @@
 /* Begin PBXFileReference section */
 		39AAFF1FF6B85DF73EDB01CA /* Pods_GoogleSignInTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoogleSignInTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B70405E612243B9DDE0B5C7 /* Pods-GoogleSignInTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoogleSignInTest.debug.xcconfig"; path = "Target Support Files/Pods-GoogleSignInTest/Pods-GoogleSignInTest.debug.xcconfig"; sourceTree = "<group>"; };
+		CE0F30752DCBA11800EC3BCC /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		CEA60E3E2DCA3FE6000A64C4 /* GoogleSignInTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoogleSignInTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F71690C13BB4FE7C3128D976 /* Pods-GoogleSignInTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoogleSignInTest.release.xcconfig"; path = "Target Support Files/Pods-GoogleSignInTest/Pods-GoogleSignInTest.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -53,6 +54,7 @@
 		CEA60E352DCA3FE6000A64C4 = {
 			isa = PBXGroup;
 			children = (
+				CE0F30752DCBA11800EC3BCC /* README.md */,
 				CEA60E402DCA3FE6000A64C4 /* GoogleSignInTest */,
 				CEA60E3F2DCA3FE6000A64C4 /* Products */,
 				E70762B5DB37F58AE9CD08C9 /* Pods */,

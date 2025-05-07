@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+/// Структура для импорта изображения.
+/// Реализует протокол `Transferable`.
 struct GoogleSignInShareImage: Transferable {
     let image: UIImage
     static var fileName: String { "image.jpg" }
